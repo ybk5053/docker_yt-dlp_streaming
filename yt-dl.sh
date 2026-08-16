@@ -12,7 +12,7 @@ if [ "$REQUEST_METHOD" = "POST" ] && [ -n "$CONTENT_LENGTH" ]; then
         echo '{"status": "error", "message": "Missing required key: url"}'
         exit 0
     fi
-    /root/yt-dlp -o - --impersonate Chrome-116 --referer "$REF_VAL" "$URL_VAL" | ffmpeg -re -i pipe:0 -c copy -f mpegts -listen 1 http://0.0.0.0:12345 >/root/log 2>&1 </dev/null &
+    /yt-dlp/yt-dlp -o - --impersonate Chrome-116 --referer "$REF_VAL" "$URL_VAL" | ffmpeg -re -i pipe:0 -c copy -f mpegts -listen 1 http://0.0.0.0:12345 >/yt-dlp/log 2>&1 </dev/null &
     echo "Status: 200 OK"
     echo "Content-Type: application/json"
     echo ""
